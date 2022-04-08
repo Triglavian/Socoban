@@ -1,0 +1,7 @@
+C:\Users\Milletian\source\repos\Socoban\obj\Debug\Socoban.csproj.AssemblyReference.cache
+C:\Users\Milletian\source\repos\Socoban\obj\Debug\Socoban.csproj.CoreCompileInputs.cache
+C:\Users\Milletian\source\repos\Socoban\bin\Debug\Socoban.exe.config
+C:\Users\Milletian\source\repos\Socoban\bin\Debug\Socoban.exe
+C:\Users\Milletian\source\repos\Socoban\bin\Debug\Socoban.pdb
+C:\Users\Milletian\source\repos\Socoban\obj\Debug\Socoban.exe
+C:\Users\Milletian\source\repos\Socoban\obj\Debug\Socoban.pdb
