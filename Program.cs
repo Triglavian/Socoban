@@ -10,11 +10,14 @@ namespace Socoban
 	{
 		static void Main(string[] args)
 		{
+			int i = 0;
 			Rendering rendering = new Rendering();
 			while (true)
 			{
 				rendering.Draw(i);
 				Thread.Sleep(2000);
+				i++;
+				i = i % 3;
 			}
 		}
 	}
