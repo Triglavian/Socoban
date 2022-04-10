@@ -127,5 +127,3 @@ class Field
 		return m_Field[p_Stage];
 	}
 }
-
-

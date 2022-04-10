@@ -32,15 +32,17 @@ class GameRunning
 			m_Render.Draw(m_Stage);
 			return;	//return if get invalid key
 		}
-		m_UnitManager.m_Player.GetCurrentStagePlayer(m_Stage).MoveGhost(m_ValidKey.Value);	//player ghost move
-		m_BoxId = m_UnitManager.m_Player.IsPushBox(m_UnitManager.m_Boxes.GetCurrentStageBoxes(m_Stage), m_Stage);   //if player's ghost push a box, get the box's index
-		if (m_BoxId >= 0)
+		m_UnitManager.m_Player[m_Stage].MoveGhost(m_ValidKey.Value);    //player ghost move
+		if (m_UnitManager.ValidatePlayerMovement(m_Field.CurrentField(m_Stage), m_Stage) == true)   //if player ghost movement is valid
 		{
-			m_UnitManager.m_Boxes.MoveBox(m_Stage, m_BoxId, m_Field.CurrentField(m_Stage), m_ValidKey.Value);   //move the box
-			m_UnitManager.m_Player.GetCurrentStagePlayer(m_Stage).ConfirmMoveing();
-		} else {
-			m_UnitManager.m_Player.GetCurrentStagePlayer(m_Stage).CancelMoveing();
+			m_BoxId = m_UnitManager.IsPushBox(m_UnitManager.m_Boxes[m_Stage].GetCurrentStageBoxes(), m_Stage);  //get pushable box index
+			if (m_BoxId >= 0)
+			{
+				m_UnitManager.MoveBox(m_Stage, m_BoxId, m_Field.CurrentField(m_Stage), m_ValidKey.Value);   //move box if box is moveable
+				m_UnitManager.m_Player[m_Stage].ConfirmMovement();   //confirm player movement 
+			} 
 		}
+		else m_UnitManager.m_Player[m_Stage].CancelMovement();	//if immovable
 		m_Render.Draw(m_Stage);
 		m_ValidKey = null;
 	}

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 class Movable : Unit
 {
 	//unit modified ghost position
-	public int m_ModifX { get; set; }
-	public int m_ModifY { get; set; }
+	protected int m_ModifX { get; set; }
+	protected int m_ModifY { get; set; }
 	public Movable()
 	{
 		m_X = m_ModifX = 0;
@@ -52,12 +52,12 @@ class Movable : Unit
 				break;
 		}
 	}
-	public void ConfirmMoveing()	//move unit follow the key direction
+	public void ConfirmMovement()	//move unit follow the key direction
 	{
 		m_X = m_ModifX;
 		m_Y = m_ModifY;
 	}
-	public void CancelMoveing()	//cancel unit moving and get ghost back to current position
+	public void CancelMovement()	//cancel unit moving and get ghost back to current position
 	{
 		m_ModifX = m_X;
 		m_ModifY = m_Y;

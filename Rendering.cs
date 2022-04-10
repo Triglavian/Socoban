@@ -17,11 +17,14 @@ class Rendering
 	}
 	private void RenderBackBuffer(int p_Stage)	//render back buffer from field data
 	{
-		//m_Field.RenderFieldStatus(m_Field.CurrentField(p_Stage), m_Buffer.m_BackBuffer);
-		m_Field.RenderFieldStatus(p_Stage, m_Buffer.m_BackBuffer);
-		m_UnitManager.m_Holes.RenderHolesData(p_Stage, m_Buffer.m_BackBuffer);
-		m_UnitManager.m_Boxes.RenderBoxesData(p_Stage, m_Buffer.m_BackBuffer);
-		m_UnitManager.m_Player.RenderPlayerData(p_Stage, m_Buffer.m_BackBuffer);
+		//m_Field.RenderFieldStatus(p_Stage, m_Buffer.m_BackBuffer);
+		//m_UnitManager.m_Holes.RenderHolesData(p_Stage, m_Buffer.m_BackBuffer);
+		//m_UnitManager.m_Boxes.RenderBoxesData(p_Stage, m_Buffer.m_BackBuffer);
+		//m_UnitManager.m_Player.RenderPlayerData(p_Stage, m_Buffer.m_BackBuffer);
+		m_Field.RenderFieldStatus(m_Field.CurrentField(p_Stage), m_Buffer.m_BackBuffer);
+		m_UnitManager.m_Holes[p_Stage].RenderHolesData(m_Buffer.m_BackBuffer);
+		m_UnitManager.m_Boxes[p_Stage].RenderBoxesData(m_Buffer.m_BackBuffer);
+		m_UnitManager.m_Player[p_Stage].RenderPlayerData(m_Buffer.m_BackBuffer);
 	}
 	private void RenderOutstreamBuffer()	//render outstream buffer from back buffer
 	{

@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 class Box : Movable
 {
-	public bool m_IsFilled;
-	public Box()
+	public bool m_IsLocated;	//status var that the box is on any hole
+	public Box()	//don't use
 	{
 		m_X = 0;
 		m_Y = 0;
-		m_IsFilled = false;
+		m_IsLocated = false;
 	}
 	public Box(int p_X, int p_Y)
 	{
 		m_X = m_ModifX = p_X;
 		m_Y = m_ModifY = p_Y;
-		m_IsFilled = false;
+		m_IsLocated = false;
 	}
 	public bool GetStatus() //get hole's status
 	{
-		return m_IsFilled;
+		return m_IsLocated;
+	}
+	public void SwitchStatus()	//switch box status
+	{
+		m_IsLocated = !m_IsLocated;
 	}
 }
 //{1,1,1,1,1,1,1,1,1,1},

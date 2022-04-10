@@ -38,5 +38,5 @@ class Buffer
 			}
 			m_OutBuffer[(i + 1) * m_Width - 1] = '\n';
 		}
-}
+	}
 }

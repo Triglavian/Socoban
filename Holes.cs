@@ -6,40 +6,64 @@ using System.Threading.Tasks;
 
 class Holes
 {
-	private List<List<Hole>> m_Holes = new List<List<Hole>>();  //all stages' holes data
-	//stackoverflow if use array
-	List<Hole> HoleStage1 = new List<Hole>();	//stage 1 holes data
-	List<Hole> HoleStage2 = new List<Hole>();	//stage 2 holes data
-	List<Hole> HoleStage3 = new List<Hole>();	//stage 3 holes data 
+	//private List<List<Hole>> m_Holes = new List<List<Hole>>();  //all stages' holes data
+	////stackoverflow if use array
+	//List<Hole> HoleStage1 = new List<Hole>();	//stage 1 holes data
+	//List<Hole> HoleStage2 = new List<Hole>();	//stage 2 holes data
+	//List<Hole> HoleStage3 = new List<Hole>();	//stage 3 holes data 
+	//public Holes()  //set positions of all stages' holes
+	//{
+	//	//stage 1 holes
+	//	HoleStage1.Add(new Hole(6, 2));
+	//	HoleStage1.Add(new Hole(7, 4));
+	//	m_Holes.Add(HoleStage1);
+	//	//stage 2 holes
+	//	HoleStage2.Add(new Hole(5, 3));
+	//	HoleStage2.Add(new Hole(7, 4));
+	//	m_Holes.Add(HoleStage2);
+	//	//stage 3 holes
+	//	HoleStage3.Add(new Hole(6, 2));
+	//	HoleStage3.Add(new Hole(7, 4));
+	//	HoleStage3.Add(new Hole(7, 6));
+	//	HoleStage3.Add(new Hole(8, 6));
+	//	m_Holes.Add(HoleStage3);
+	//}
+	public List<Hole> m_Holes = new List<Hole>();	//each stage's holes data
 	private const char m_HoleChar = 'X';	//hole character
-	public Holes()  //set positions of all stages' holes
+	public Holes()
 	{
-		//stage 1 holes
-		HoleStage1.Add(new Hole(6, 2));
-		HoleStage1.Add(new Hole(7, 4));
-		m_Holes.Add(HoleStage1);
-		//stage 2 holes
-		HoleStage2.Add(new Hole(5, 3));
-		HoleStage2.Add(new Hole(7, 4));
-		m_Holes.Add(HoleStage2);
-		//stage 3 holes
-		HoleStage3.Add(new Hole(6, 2));
-		HoleStage3.Add(new Hole(7, 4));
-		HoleStage3.Add(new Hole(7, 6));
-		HoleStage3.Add(new Hole(8, 6));
-		m_Holes.Add(HoleStage3);
+		m_Holes.Add(new Hole());
 	}
-	public void RenderHolesData(int p_Stage, char[,] p_Buffer)	//set current datas of p_Stage's holes to back buffer
+	public Holes(int p_Stage)
 	{
-		List<Hole> CurrentStage = m_Holes[p_Stage];
-		for (int i = 0; i < CurrentStage.Count; i++)	//loop as number of p_Stage's holes
+		switch (p_Stage)
 		{
-			p_Buffer[CurrentStage[i].GetYPosition(), CurrentStage[i].GetXPosition()] = m_HoleChar;
+			case 0: //stage 1 holes
+				m_Holes.Add(new Hole(6, 2));
+				m_Holes.Add(new Hole(7, 4));
+				break;
+			case 1: //stage 2 holes
+				m_Holes.Add(new Hole(5, 3));
+				m_Holes.Add(new Hole(7, 4));
+				break;
+			case 2: //stage 3 holes
+				m_Holes.Add(new Hole(6, 2));
+				m_Holes.Add(new Hole(7, 4));
+				m_Holes.Add(new Hole(7, 6));
+				m_Holes.Add(new Hole(8, 6));
+				break;
 		}
 	}
-	public List<Hole> GetCurrentStageHoles(int p_Stage)	//get current stage's holes data
+	public void RenderHolesData(char[,] p_Buffer)	//render current stage's holes data
 	{
-		return m_Holes[p_Stage];
+		for (int i = 0; i < m_Holes.Count; i++)	//loop as number of p_Stage's holes
+		{
+			p_Buffer[m_Holes[i].GetYPosition(), m_Holes[i].GetXPosition()] = m_HoleChar;
+		}
+	}
+	public List<Hole> GetCurrentStageHoles(int p_Stage) //get current stage's holes data
+	{
+		return m_Holes;
 	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
