@@ -4,21 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-namespace Socoban
+
+class Program
 {
-	class Program
+	static void Main(string[] args)
 	{
-		static void Main(string[] args)
+		GameRunning game = new GameRunning();
+		while (true)
 		{
-			int i = 0;
-			Rendering rendering = new Rendering();
-			while (true)
-			{
-				rendering.Draw(i);
-				Thread.Sleep(2000);
-				i++;
-				i = i % 3;
-			}
+			game.Running();
 		}
 	}
 }
+

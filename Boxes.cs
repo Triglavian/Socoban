@@ -38,6 +38,22 @@ class Boxes
 			p_Buffer[CurrentStage[i].GetYPosition(), CurrentStage[i].GetXPosition()] = m_BoxChar;
 		}
 	}
+	public List<Box> GetCurrentStageBoxes(int p_Stage)	//get current stage's boxes data
+	{
+		return m_Boxes[p_Stage];
+	}
+	public void MoveBox(int p_Stage, int p_BoxId, int[,] p_Field, ConsoleKeyInfo p_Key)
+	{	Box box = m_Boxes[p_Stage][p_BoxId];
+		box.MoveGhost(p_Key);
+		if (p_Field[box.GetModifYPosition(), box.GetModifXPosition()] != 1) //1 = wall
+		{
+			box.ConfirmMoveing();
+		}
+		else
+		{
+			box.CancelMoveing();
+		}
+	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
 //{1,1,1,1,1,1,1,1,1,1},

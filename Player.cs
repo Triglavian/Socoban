@@ -19,6 +19,22 @@ class Player : Movable
 		Movable CurrentStage = m_Player[p_Stage];
 		p_Buffer[CurrentStage.GetYPosition(), CurrentStage.GetXPosition()] = m_PlayerChar;
 	}
+	public Movable GetCurrentStagePlayer(int p_Stage)	//get current stage's player data
+	{
+		return m_Player[p_Stage];
+	}
+	public int IsPushBox(List<Box> p_Box, int p_Stage)	//return pushable box index
+	{
+		for(int i = 0; i<p_Box.Count; ++i)
+		{
+			if (p_Box[i].GetXPosition() == m_Player[p_Stage].GetXPosition() &&
+					p_Box[i].GetYPosition() == m_Player[p_Stage].GetYPosition()) 
+			{
+				return i;	//return index if ghost push box
+			}
+		}
+		return -1;	//return -1 if ghost don't push box
+	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
 //{1,1,1,1,1,1,1,1,1,1},

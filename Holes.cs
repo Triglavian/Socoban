@@ -37,6 +37,10 @@ class Holes
 			p_Buffer[CurrentStage[i].GetYPosition(), CurrentStage[i].GetXPosition()] = m_HoleChar;
 		}
 	}
+	public List<Hole> GetCurrentStageHoles(int p_Stage)	//get current stage's holes data
+	{
+		return m_Holes[p_Stage];
+	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
 //{1,1,1,1,1,1,1,1,1,1},

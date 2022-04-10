@@ -15,8 +15,8 @@ class Box : Movable
 	}
 	public Box(int p_X, int p_Y)
 	{
-		m_X = p_X;
-		m_Y = p_Y;
+		m_X = m_ModifX = p_X;
+		m_Y = m_ModifY = p_Y;
 		m_IsFilled = false;
 	}
 	public bool GetStatus() //get hole's status

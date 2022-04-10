@@ -18,7 +18,15 @@ class Movable : Unit
 		m_X = m_ModifX = p_X;
 		m_Y = m_ModifY = p_Y;
 	}
-	public void Push(ConsoleKeyInfo p_Key)	//push ghost position
+	public int GetModifXPosition()   //get unit's x position
+	{
+		return m_ModifX;
+	}
+	public int GetModifYPosition()   //get unit's y position
+	{
+		return m_ModifY;
+	}
+	public void MoveGhost(ConsoleKeyInfo p_Key)	//push ghost position
 	{
 		switch (p_Key.Key)	//moving direction swtich
 		{
@@ -44,9 +52,14 @@ class Movable : Unit
 				break;
 		}
 	}
-	public void PushUnit()
+	public void ConfirmMoveing()	//move unit follow the key direction
 	{
 		m_X = m_ModifX;
 		m_Y = m_ModifY;
+	}
+	public void CancelMoveing()	//cancel unit moving and get ghost back to current position
+	{
+		m_ModifX = m_X;
+		m_ModifY = m_Y;
 	}
 }
