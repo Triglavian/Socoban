@@ -10,10 +10,10 @@ class Program
 	static void Main(string[] args)
 	{
 		bool GameStatus = true;
-		GameRunning game = new GameRunning();
+		GameRunning Game = new GameRunning();
 		while (GameStatus)
 		{
-			GameStatus = game.Running();
+			GameStatus = Game.Running();
 		}
 	}
 }
