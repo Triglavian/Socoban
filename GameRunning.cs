@@ -25,7 +25,7 @@ class GameRunning
 		m_Key = new GetValidKey();
 		m_Render = new Rendering(m_UnitManager, m_Field);
 		m_ValidKey = new ConsoleKeyInfo();
-		m_Stage = 2;
+		m_Stage = 0;
 		m_BoxId = -1;
 	}
 	public bool Running()   //game logic
