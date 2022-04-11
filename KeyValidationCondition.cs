@@ -16,8 +16,12 @@ class KeyValidationCondition
 	public const ConsoleKey m_Down1 = ConsoleKey.S;
 	public const ConsoleKey m_Down2 = ConsoleKey.DownArrow;
 	public const ConsoleKey m_Esc = ConsoleKey.Escape;
+	public const ConsoleKey m_R = ConsoleKey.R;
+	public const ConsoleKey m_St1 = ConsoleKey.D1;
+	public const ConsoleKey m_St2 = ConsoleKey.D2;
+	public const ConsoleKey m_St3 = ConsoleKey.D3;
 	public KeyValidationCondition() { }
-	public bool ValidateKeyCondition(ConsoleKeyInfo p_Key)	//validate key 
+	public bool ValidateDirectionKeyCondition(ConsoleKeyInfo p_Key)	//validate key 
 	{
 		switch (p_Key.Key)
 		{
@@ -35,10 +39,10 @@ class KeyValidationCondition
 			case m_Down2:
 			//escape, back to stage selecttion
 			case m_Esc:
+			//Reset, reset current stage
+			case m_R:
 				return true;	//valid keys
 			//any other key
-			default:
-				break;
 		}
 		return false;	//invalide keys
 	}

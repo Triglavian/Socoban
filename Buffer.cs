@@ -18,13 +18,13 @@ class Buffer
 		m_OutBuffer = new char[m_Height * m_Width];
 		Console.CursorVisible = false;
 	}
-	private void ClearBuffer()	//clear buffer before render new buffer
+	public void ClearBackBuffer()	//clear buffer before render new buffer
 	{
-		for(int i = 0; i<m_Height; ++i)
+		for (int i = 0; i < m_Height; ++i) 
 		{
-			for(int j = 0; j<m_Width; ++j)
+			for (int j = 0; j < m_Width; ++j) 
 			{
-				m_BackBuffer[i, j] = '\0';
+				m_BackBuffer[i, j] = ' ';
 			}
 		}
 	}

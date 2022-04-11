@@ -14,7 +14,7 @@ class GetValidKey
 	public ConsoleKeyInfo? GetOnlyValidKey()	//get valid key value or null
 	{
 		ConsoleKeyInfo? Key = GetKey();	//get key info if press any key
-		if ((Key != null) && (m_ValidateKey.ValidateKeyCondition(Key.Value) == true)) return Key;	//return key data if get valid key
+		if ((Key != null) && (m_ValidateKey.ValidateDirectionKeyCondition(Key.Value) == true)) return Key;	//return key data if get valid key
 		return null;
 	}
 	private ConsoleKeyInfo? GetKey()	//get key info if press any key

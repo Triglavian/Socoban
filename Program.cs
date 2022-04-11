@@ -9,10 +9,11 @@ class Program
 {
 	static void Main(string[] args)
 	{
+		bool GameStatus = true;
 		GameRunning game = new GameRunning();
-		while (true)
+		while (GameStatus)
 		{
-			game.Running();
+			GameStatus = game.Running();
 		}
 	}
 }

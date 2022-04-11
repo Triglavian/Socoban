@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 class UnitManagement
 {
-	public List<Holes> m_Holes = new List<Holes>();
-	public List<Boxes> m_Boxes = new List<Boxes>();
-	public List<Player> m_Player = new List<Player>();
+	private List<Holes> m_Holes = new List<Holes>();
+	private List<Boxes> m_Boxes = new List<Boxes>();
+	private List<Player> m_Player = new List<Player>();
 	int m_Stages = 3;
 	public UnitManagement()
 	{
@@ -26,49 +26,48 @@ class UnitManagement
 			m_Holes.Add(new Holes(i));
 		}
 	}
-	public bool ValidatePlayerMovement(int[,] p_Field, int p_Stage)
+	public int ValidatePlayerMovement(int[,] p_Field, int p_Stage)
 	{
-		if (p_Field[m_Player[p_Stage].GetModifYPosition(), m_Player[p_Stage].GetModifXPosition()] == 0)	return true;    //0 is road, movable
-		else if (p_Field[m_Player[p_Stage].GetModifYPosition(), m_Player[p_Stage].GetModifXPosition()] == 1) return false;	//1 is wall, inmovable
-		return false;
+		if (p_Field[m_Player[p_Stage].GetModifYPosition(), m_Player[p_Stage].GetModifXPosition()] == 0)	return 0x1;    //0 is road, movable, return 0x1
+		return 0x0;	//1 is wall, immovable, return 0x0
 	}
-	public int IsPushBox(List<Box> p_Box, int p_Stage)  //return pushable box index
+	public int IsTryToPushBox(List<Box> p_Box, int p_Stage, out int p_BoxId)  //return is box pushable
 	{
+		p_BoxId = -1;
 		for (int i = 0; i < p_Box.Count; ++i)
 		{
 			if ((p_Box[i].GetXPosition() == m_Player[p_Stage].GetModifXPosition()) &&
 					(p_Box[i].GetYPosition() == m_Player[p_Stage].GetModifYPosition()))
 			{
-				return i;   //return index if ghost push box
+				p_BoxId = i;
+				return 0x10;	//return 0x0 if a box is pushable
 			}
 		}
-		return -1;  //return -1 if ghost don't push box
+		return 0x0;  //return 0x0 if no box is pushable
 	}
-	private bool IsAnotherBoxBeyondTheBox(int p_Stage, Box p_Box, int p_BoxId)
+	public bool IsBoxPushable(int p_Stage, Box p_Box, int p_BoxId, int[,] p_Field)
 	{
-		for(int i = 0; i < m_Boxes[p_Stage].GetCurrentStageBoxes().Count; ++i)
+		if (p_BoxId < 0) return false;	//if invalid box id, return false
+		for(int i = 0; i < m_Boxes[p_Stage].GetCurrentStageBoxList().Count; ++i)
 		{
 			if (i == p_BoxId) continue;
-			if ((m_Boxes[p_Stage].GetCurrentStageBoxes()[i].GetXPosition() == p_Box.GetModifXPosition()) &&
-				(m_Boxes[p_Stage].GetCurrentStageBoxes()[i].GetYPosition() == p_Box.GetModifYPosition())) return true;	//if another box is beyond the box now pushing
+			if (((m_Boxes[p_Stage].GetCurrentStageBoxList()[i].GetXPosition() == p_Box.GetModifXPosition()) 
+				&& (m_Boxes[p_Stage].GetCurrentStageBoxList()[i].GetYPosition() == p_Box.GetModifYPosition())) 
+				|| (p_Field[m_Boxes[p_Stage].GetCurrentStageBoxList()[p_BoxId].GetModifYPosition(), 
+				m_Boxes[p_Stage].GetCurrentStageBoxList()[p_BoxId].GetModifXPosition()] != 0)) return false;	//return 0x0 if any box is behind the box
 		}
-		return false;
+		return true;	//return 0x100 if box is pushable
 	}
-	public void MoveBox(int p_Stage, int p_BoxId, int[,] p_Field, ConsoleKeyInfo p_Key)
-	{
-		Box box = m_Boxes[p_BoxId].GetCurrentStageBoxes()[p_BoxId];	//frontward box
-		box.MoveGhost(p_Key);
-		if ((p_Field[box.GetModifYPosition(), box.GetModifXPosition()] != 1) && (IsAnotherBoxBeyondTheBox(p_Stage, box, p_BoxId) == false)) //1 = wall
-		{
-			box.ConfirmMovement();
-		}
-		else
-		{
-			box.CancelMovement();
-		}
-	}
-	public Movable GetCurrentStagePlayer(int p_Stage)   //get current stage's player data
+	public Player GetCurrentStagePlayer(int p_Stage)   //get current stage's player data
 	{
 		return m_Player[p_Stage];
+	}
+	public Boxes GetCurrentStageBoxes(int p_Stage)
+	{
+		return m_Boxes[p_Stage];
+	}
+	public Holes GetCurrentStageHoles(int p_Stage)
+	{
+		return m_Holes[p_Stage];
 	}
 }

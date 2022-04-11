@@ -7,28 +7,7 @@ using System.Threading.Tasks;
 
 class Boxes
 {
-	//private List<List<Box>> m_Boxes = new List<List<Box>>();  //all stages' holes data
-	//															//stackoverflow if use array
-	//List<Box> BoxStage1 = new List<Box>();	//stage 1 holes data
-	//List<Box> BoxStage2 = new List<Box>();	//stage 2 holes data
-	//List<Box> BoxStage3 = new List<Box>();	//stage 3 holes data 
-	//public Boxes()  //set positions of all stages' holes
-	//{
-	//	//stage 1 holes
-	//	BoxStage1.Add(new Box(6, 3));
-	//	BoxStage1.Add(new Box(6, 4));
-	//	m_Boxes.Add(BoxStage1);
-	//	//stage 2 holes
-	//	BoxStage2.Add(new Box(6, 3));
-	//	BoxStage2.Add(new Box(6, 4));
-	//	m_Boxes.Add(BoxStage2);
-	//	//stage 3 holes
-	//	BoxStage3.Add(new Box(6, 3));
-	//	BoxStage3.Add(new Box(7, 3));
-	//	BoxStage3.Add(new Box(6, 5));
-	//	BoxStage3.Add(new Box(7, 5));
-	//	m_Boxes.Add(BoxStage3);
-	//}
+
 	private List<Box> m_Boxes = new List<Box>();		//each stage's boxes data
 	private const char m_BoxChar = 'O';		//box character
 	public Boxes()	//don't use
@@ -58,11 +37,10 @@ class Boxes
 	{
 		for (int i = 0; i < m_Boxes.Count; i++)    //loop as number of p_Stage's holes
 		{
-			//p_Buffer[CurrentStage[i].GetYPosition(), CurrentStage[i].GetXPosition()] = m_BoxChar;
 			p_Buffer[m_Boxes[i].GetYPosition(), m_Boxes[i].GetXPosition()] = m_BoxChar;
 		}
 	}
-	public List<Box> GetCurrentStageBoxes()	//get current stage's boxes data
+	public List<Box> GetCurrentStageBoxList()	//get current stage's boxes data
 	{
 		return m_Boxes;
 	}

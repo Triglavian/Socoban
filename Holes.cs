@@ -65,6 +65,30 @@ class Holes
 	{
 		return m_Holes;
 	}
+	public void RefreshHolesStatus(List<Box> p_Boxes)	//refresh hole status
+	{
+		for (int i = 0; i < m_Holes.Count; ++i) 
+		{
+			for (int j = 0; j < p_Boxes.Count; ++j)
+			{
+				if (((m_Holes[i].GetXPosition() == p_Boxes[j].GetXPosition()) && (m_Holes[i].GetYPosition() == p_Boxes[j].GetYPosition()))) { //if any box is on the hole
+					m_Holes[i].SwitchFilled();	//switch to fill
+				}
+				//else //if any box is not on the hole
+				//{
+				//	m_Holes[i].SwitctEmpty();	//switch to empty
+				//}
+			}
+		}
+	}
+	public bool IsCompleteStage()
+	{
+		for (int i = 0; i < m_Holes.Count; ++i) 
+		{
+			if (m_Holes[i].GetStatus() == false) return false;
+		}
+		return true;
+	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
 //{1,1,1,1,1,1,1,1,1,1},

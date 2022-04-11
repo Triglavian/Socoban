@@ -25,4 +25,3 @@ abstract class Unit	//all unit parent class
 		return m_Y;
 	}
 }
-

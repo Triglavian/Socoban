@@ -10,12 +10,16 @@ class Field
 	private const int m_FieldHeight = 10;	//field height
 	private List<int[,]> m_Field = new List<int[,]>();  //field data list
 	private const char Road = ' ';		//road character
-	private const char Wall = '=';		//wall character
+	private const char Wall = '=';      //wall character
+	private List<bool> m_IsClear = new List<bool>();	//stage clear flag flag
 	public Field()
 	{
 		m_Field.Add(Stage1);
 		m_Field.Add(Stage2);
 		m_Field.Add(Stage3);
+		m_IsClear.Add(false);
+		m_IsClear.Add(false);
+		m_IsClear.Add(false);
 	}
 	private int[,] Stage1 = new int[m_FieldHeight, m_FieldWidth]
 	{
@@ -125,5 +129,9 @@ class Field
 	public int[,] CurrentField(int p_Stage)	//return current stage map data
 	{
 		return m_Field[p_Stage];
+	}
+	public bool GetClearStatus(int p_Stage)
+	{
+		return m_IsClear[p_Stage];
 	}
 }

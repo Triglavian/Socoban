@@ -19,14 +19,6 @@ class Box : Movable
 		m_Y = m_ModifY = p_Y;
 		m_IsLocated = false;
 	}
-	public bool GetStatus() //get hole's status
-	{
-		return m_IsLocated;
-	}
-	public void SwitchStatus()	//switch box status
-	{
-		m_IsLocated = !m_IsLocated;
-	}
 }
 //{1,1,1,1,1,1,1,1,1,1},
 //{1,1,1,1,1,1,1,1,1,1},
